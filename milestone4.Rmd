@@ -77,78 +77,78 @@ elections %>%
 # I also tried just doing title = n, but that also won't work
 # Ideally, I will be able to get this map function to work, and I won't have to type out code for each state...
 
-separate_by_state <- function(n){
-
-  nf  <- gsub("()","",sys.call()[51])
-  titles <- c(Alambama = "Voters in Alabama",
-              "Alaska" = "Voters in Alaska",
-              "Arizona" = "Voters in Arizona",
-              "Arkansas" = "Voters in Arkansas",
-              "California" = "Voters in California",
-              "Colorado" = "Voters in Colorado",
-              "Connecticut" = "Voters in Connecticut",
-              "Delaware" = "Voters in Delaware",
-              "Dist. of Col." = "Voters in District of Columbia",
-              "Florida" = "Voters in Florida",
-              "Georgia" = "Voters in Georgia",
-              "Hawaii" = "Voters in Hawaii",
-              "Idaho" = "Voters in Idaho",
-              "Illinois" = "Voters in Illinois",
-              "Indiana" = "Voters in OIndiana",
-              "Iowa" = "Voters in Iowa",
-              "Kansas" = "Voters in Kansas",
-              "Kentucky" = "Voters in Kentucky",
-              "Louisiana" = "Voters in Louisiana",
-              "Maine" = "Voters in Maine",
-              "Maryland" = "Voters in Maryland",
-              "Massachusetts" = "Voters in Massachusetts",
-              "Michigan" = "Voters in Michigan",
-              "Minnesota" = "Voters in Minnesota",
-              "Mississippi" = "Voters in Mississippi",
-              "Missouri" = "Voters in Missouri",
-              "Montana" = "Voters in Montana",
-              "Nebraska" = "Voters in Nebraska",
-              "Nevada" = "Voters in Nevada",
-              "New Hampshire" = "Voters in New Hampshire",
-              "New Jersey" = "Voters in New Jersey",
-              "New Mexico" = "Voters in New Mexico",
-              "New York" = "Voters in North Carolina",
-              "North Carolina" = "Voters in North Carolina",
-              "North Dakota" = "Voters in North Dakota",
-              "Ohio" = "Voters in Ohio",
-              "Oklahoma" = "Voters in Oklahoma",
-              "Oregon" = "Voters in Oregon",
-              "Pennsylvania" = "Voters in Pennsylvania",
-              "Rhode Island" = "Voters in Rhode Island",
-              "South Carolina" = "Voters in South Carolina",
-              "South Dakota" = "Voters in South Dakota",
-              "Tennessee" = "Voters in Tennessee",
-              "Texas" = "Voters in Texas",
-              "Utah" = "Voters in Utah",
-              "Vermont" = "Voters in Vermont",
-              "Virginia" = "Voters in Virginia",
-              "Washington" = "Voters in Washington",
-              "West Virginia" = "Voters in West Virginia",
-              "Wisconsin" = "Voters in Wisconsin",
-              "Wyoming" = "Voters in Wyoming"
-              )
-  
-  plot <- elections %>%
-    filter(state == n) %>%
-    select(year, total) %>%
-    ggplot(aes(x = year, y = total)) +
-      labs(x = "Year", y = "Number of Voters") +
-      geom_line() +
-      ggtitle(titles[nf])
-
-  return(plot)
-}
-
-states <- c("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Dist. of Col.", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming")
-
-map(states, separate_by_state)
+# separate_by_state <- function(n){
+# 
+#   nf  <- gsub("()","",sys.call()[51])
+#   titles <- c(Alambama = "Voters in Alabama",
+#               Alaska = "Voters in Alaska",
+#               Arizona = "Voters in Arizona",
+#               Arkansas = "Voters in Arkansas",
+#               California = "Voters in California",
+#               Colorado = "Voters in Colorado",
+#               Connecticut = "Voters in Connecticut",
+#               Delaware = "Voters in Delaware",
+#               Dist. of Col. = "Voters in District of Columbia",
+#               Florida = "Voters in Florida",
+#               Georgia = "Voters in Georgia",
+#               Hawaii = "Voters in Hawaii",
+#               Idaho = "Voters in Idaho",
+#               Illinois = "Voters in Illinois",
+#               Indiana = "Voters in OIndiana",
+#               Iowa = "Voters in Iowa",
+#               Kansas = "Voters in Kansas",
+#               Kentucky = "Voters in Kentucky",
+#               Louisiana = "Voters in Louisiana",
+#               Maine = "Voters in Maine",
+#               Maryland = "Voters in Maryland",
+#               Massachusetts = "Voters in Massachusetts",
+#               Michigan = "Voters in Michigan",
+#               Minnesota = "Voters in Minnesota",
+#               Mississippi = "Voters in Mississippi",
+#               Missouri = "Voters in Missouri",
+#               Montana = "Voters in Montana",
+#               Nebraska = "Voters in Nebraska",
+#               Nevada = "Voters in Nevada",
+#               New Hampshire = "Voters in New Hampshire",
+#               New Jersey = "Voters in New Jersey",
+#               New Mexico = "Voters in New Mexico",
+#               New York = "Voters in North Carolina",
+#               North Carolina = "Voters in North Carolina",
+#               North Dakota = "Voters in North Dakota",
+#               Ohio = "Voters in Ohio",
+#               Oklahoma = "Voters in Oklahoma",
+#               Oregon = "Voters in Oregon",
+#               Pennsylvania = "Voters in Pennsylvania",
+#               Rhode Island = "Voters in Rhode Island",
+#               South Carolina = "Voters in South Carolina",
+#               South Dakota = "Voters in South Dakota",
+#               Tennessee = "Voters in Tennessee",
+#               Texas = "Voters in Texas",
+#               Utah = "Voters in Utah",
+#               Vermont = "Voters in Vermont",
+#               Virginia = "Voters in Virginia",
+#               Washington = "Voters in Washington",
+#               West Virginia = "Voters in West Virginia",
+#               Wisconsin = "Voters in Wisconsin",
+#               Wyoming = "Voters in Wyoming"
+#               )
+#   
+#   plot <- elections %>%
+#     filter(state == n) %>%
+#     select(year, total) %>%
+#     ggplot(aes(x = year, y = total)) +
+#       labs(x = "Year", y = "Number of Voters") +
+#       geom_line() +
+#       ggtitle(titles[nf])
+# 
+#    return(plot)
+# }
+# 
+# states <- c("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Dist. of Col.", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming")
+# 
+# map(states, separate_by_state)
 ```
-
+# Number of Voters Over Time in the 13 Original Colonies
 ```{r MA, echo = FALSE}
 
 # These are what I wanted to do with the map function, but with a little more tidying up of the graphic so that they look good
@@ -156,8 +156,7 @@ map(states, separate_by_state)
 # across states, and not just within one state over time
 
 MA <- elections %>%
-  filter(state == "Massachusetts") %>%
-  select(year, total)
+  filter(state == "Massachusetts")
 
 ggplot(MA, aes(x = year, y = total)) +
   geom_line() +
@@ -168,8 +167,7 @@ ggplot(MA, aes(x = year, y = total)) +
 
 ```{r DE, echo = FALSE}
 DE <- elections %>%
-  filter(state == "Delaware") %>%
-  select(year, total)
+  filter(state == "Delaware")
 
 ggplot(DE, aes(x = year, y = total)) +
   geom_line() +
@@ -180,8 +178,7 @@ ggplot(DE, aes(x = year, y = total)) +
 
 ```{r MD, echo = FALSE}
 MD <- elections %>%
-  filter(state == "Maryland") %>%
-  select(year, total)
+  filter(state == "Maryland")
 
 ggplot(MD, aes(x = year, y = total)) +
   geom_line() +
@@ -192,8 +189,7 @@ ggplot(MD, aes(x = year, y = total)) +
 
 ```{r CT, echo = FALSE}
 CT <- elections %>%
-  filter(state == "Connecticut") %>%
-  select(year, total)
+  filter(state == "Connecticut") 
 
 ggplot(CT, aes(x = year, y = total)) +
   geom_line() +
@@ -204,8 +200,7 @@ ggplot(CT, aes(x = year, y = total)) +
 
 ```{r RI, echo = FALSE}
 RI <- elections %>%
-  filter(state == "Rhode Island") %>%
-  select(year, total)
+  filter(state == "Rhode Island")
 
 ggplot(RI, aes(x = year, y = total)) +
   geom_line() +
@@ -216,8 +211,7 @@ ggplot(RI, aes(x = year, y = total)) +
 
 ```{r NH, echo = FALSE}
 NH <- elections %>%
-  filter(state == "New Hampshire") %>%
-  select(year, total)
+  filter(state == "New Hampshire") 
 
 ggplot(NH, aes(x = year, y = total)) +
   geom_line() +
@@ -228,8 +222,7 @@ ggplot(NH, aes(x = year, y = total)) +
 
 ```{r NY, echo = FALSE}
 NY <- elections %>%
-  filter(state == "New York") %>%
-  select(year, total)
+  filter(state == "New York") 
 
 ggplot(NY, aes(x = year, y = total)) +
   geom_line() +
@@ -240,8 +233,7 @@ ggplot(NY, aes(x = year, y = total)) +
 
 ```{r PA, echo = FALSE}
 PA <- elections %>%
-  filter(state == "Pennsylvania") %>%
-  select(year, total)
+  filter(state == "Pennsylvania")
 
 ggplot(PA, aes(x = year, y = total)) +
   geom_line() +
@@ -252,8 +244,7 @@ ggplot(PA, aes(x = year, y = total)) +
 
 ```{r NJ, echo = FALSE}
 NJ <- elections %>%
-  filter(state == "New Jersey") %>%
-  select(year, total)
+  filter(state == "New Jersey") 
 
 ggplot(NJ, aes(x = year, y = total)) +
   geom_line() +
@@ -264,8 +255,7 @@ ggplot(NJ, aes(x = year, y = total)) +
 
 ```{r VA, echo = FALSE}
 VA <- elections %>%
-  filter(state == "Virginia") %>%
-  select(year, total)
+  filter(state == "Virginia")
 
 ggplot(VA, aes(x = year, y = total)) +
   geom_line() +
@@ -276,8 +266,7 @@ ggplot(VA, aes(x = year, y = total)) +
 
 ```{r NC, echo = FALSE}
 NC <- elections %>%
-  filter(state == "North Carolina") %>%
-  select(year, total)
+  filter(state == "North Carolina") 
 
 ggplot(NC, aes(x = year, y = total)) +
   geom_line() +
@@ -288,8 +277,7 @@ ggplot(NC, aes(x = year, y = total)) +
 
 ```{r SC, echo = FALSE}
 SC <- elections %>%
-  filter(state == "South Carolina") %>%
-  select(year, total)
+  filter(state == "South Carolina") 
 
 ggplot(SC, aes(x = year, y = total)) +
   geom_line() +
@@ -300,8 +288,7 @@ ggplot(SC, aes(x = year, y = total)) +
 
 ```{r GA, echo = FALSE}
 GA <- elections %>%
-  filter(state == "Georgia") %>%
-  select(year, total)
+  filter(state == "Georgia") 
 
 ggplot(GA, aes(x = year, y = total)) +
   geom_line() +
