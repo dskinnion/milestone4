@@ -17,10 +17,19 @@ library(tidyverse)
 ```
 
 ```{r data, include = FALSE}
+
+# I had to separate the year column into two separate columns because it had two different parts of data
+# I also had to clean the names because they were ugly
+
 elections <- read.csv("raw-data/elec.csv") %>%
    separate("Year", c("year", "president"), sep = "-", remove = TRUE,
   convert = TRUE) %>%
   clean_names()
+
+# There are a bunch of missing values in my table that aren't filled with NA, so I tried to do this, but it didn't work.
+# I will need help to fix this, because I can't do any of the math that I want to with electoral votes until they are mapped as NA
+# then I converted NAs to 0 so that I could use them in math functions
+# But because of the problem described above, I can't actually do any math functions yet
 
 na_if(elections, " ")
 elections[is.na(elections)] <- 0
@@ -31,6 +40,10 @@ census <- read.csv("raw-data/nhgis0011_ts_state.csv") %>%
 ```
 
 ```{r elections data, include = FALSE}
+
+# Needed to change the column suffixes to match with the correct party
+# Need to be careful to only run this once, or else the newer ones get overwritten as well
+
 colnames(elections)[colnames(elections)=="x_3"] <- "percent_4"
 colnames(elections)[colnames(elections)=="ev_3"] <- "ev_4"
 colnames(elections)[colnames(elections)=="x_2"] <- "percent_3"
@@ -42,6 +55,9 @@ colnames(elections)[colnames(elections)=="ev"] <- "ev_1"
 ```
 
 ```{r fixing variable types, include = FALSE}
+
+# Needed to change the variables from factors to numeric, so that I could use them in math functions, but again, that isn't working
+
 elections %>%
   mutate(percent_1 = as.numeric(percent_1),
          ev_1 = as.numeric(ev_1),
@@ -57,6 +73,9 @@ elections %>%
 ```{r state, include = FALSE}
 
 #I can't get the titles to work right, so for this milestone, I will just do a few states by hand to show what I hope for them to look like at a later time.
+# I tried to copy a format found online, but it isn't working 
+# I also tried just doing title = n, but that also won't work
+# Ideally, I will be able to get this map function to work, and I won't have to type out code for each state...
 
 separate_by_state <- function(n){
 
@@ -131,6 +150,11 @@ map(states, separate_by_state)
 ```
 
 ```{r MA, echo = FALSE}
+
+# These are what I wanted to do with the map function, but with a little more tidying up of the graphic so that they look good
+# I also changed the scale so the max number of voters was close to the highest number of voters for any state, so comparisons can be made
+# across states, and not just within one state over time
+
 MA <- elections %>%
   filter(state == "Massachusetts") %>%
   select(year, total)
